@@ -1,4 +1,4 @@
-var version = 2;
+var version = 4;
 
 // Instalación
 self.addEventListener('install', function(event) {
@@ -10,7 +10,7 @@ self.addEventListener('activate', function(event) {
   console.log('SW '+version+' activado a las ', new Date().toLocaleTimeString());
 });
 
-// Activación
+// Fetch
 self.addEventListener('fetch', function(event) {
   if(!navigator.onLine) {
     event.respondWith(new Response('<h1>Estás sin conexión</h1>', {headers: { 'Content-Type': 'text/html'}}));

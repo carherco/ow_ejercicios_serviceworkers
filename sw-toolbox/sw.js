@@ -20,16 +20,16 @@ toolbox.router.get('/miweb/*', toolbox.cacheFirst, {
 // En IndexedDB se pueden ver los elementos cacheados con su tiempo de expiración
 
 
-toolbox.router.get('/miweb/*', toolbox.networkFirst, {
+toolbox.router.get('/directorio2/*', toolbox.networkFirst, {
   cache: {
     name: myCache.dynamic,
-    maxEntires: 5
+    maxEntires: 50
   }
 });
 // Solamente guarda 5 elementos
 
 
-toolbox.router.get('/miweb/*', toolbox.networkFirst, {
+toolbox.router.get('/directorio3/*', toolbox.networkFirst, {
   networkTimeoutSeconds: 1,
   cache: {
     name: myCache.dynamic,
@@ -38,7 +38,7 @@ toolbox.router.get('/miweb/*', toolbox.networkFirst, {
 });
 // Solamente espera a la red durante 1 segundo
 
-toolbox.router.get('/miweb/*', function(request, values, options) {
+toolbox.router.get('/directorio4/*', function(request, values, options) {
   return toolbox.networkFirst(request, values, options)
   .catch(function (error) {
     return caches.match(new Request('contenido_offline.html'))
@@ -52,20 +52,4 @@ toolbox.router.get('/miweb/*', function(request, values, options) {
 });
 // Función personalizada de respuesta: networkFirst + contenido offline si tampoco está en la caché
 
-
-// Activación
-self.addEventListener('activate', function(event) {
-  console.log('SW '+myCache.static+' activado a las ', new Date().toLocaleTimeString());
-});
-
-// Activación
-self.addEventListener('fetch', function(event) {
-  if(!navigator.onLine) {
-    event.respondWith(new Response('<h1>Estás sin conexión</h1>', {headers: { 'Content-Type': 'text/html'}}));
-  } else {
-    console.log(event.request.url);
-    event.respondWith(fetch(event.request));
-  }
-  
-});
 

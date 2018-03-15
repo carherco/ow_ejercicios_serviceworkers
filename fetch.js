@@ -1,63 +1,66 @@
 
-fetch('url')
+// fetch('https://httpbin.org/get')
 
-// Comprobar éxito de la respuesta
-.then(response => {
-  if (response.ok){
-    return response;
-  }
+// // Comprobar éxito de la respuesta
+// .then(response => {
+//   if (response.ok){
+//     return response;
+//   }
 
-  throw new Error('Ha ocurrido un error');
-})
+//   throw new Error('Ha ocurrido un error');
+// })
 
-// Transformar respuesta de string a json
-.then(response => response.json())
+// // Transformar respuesta de string a json
+// .then(response => response.json())
 
-// Sacar por consola la respuesta y devolverla por si alguien más se quiere encadenar al .then()
-.then(response => console.dir(response) || response)
+// // Sacar por consola la respuesta y devolverla por si alguien más se quiere encadenar al .then()
+// .then(response => console.dir(response) || response)
 
-// Gestionar errores en cualquiera de los .then()
-.catch(console.error);
+// // Gestionar errores en cualquiera de los .then()
+// .catch(console.error);
+
+
+
 
 
 
 // -------Leer la respuesta de un get--------
 
-fetch('https://httpbin.org/html')
+// fetch('https://httpbin.org/get')
 
-.then( response => {
-  if (response.ok){
-    return response;
-  }
+// .then( response => {
+//   if (response.ok){
+//     return response;
+//   }
 
-  throw new Error('Ha ocurrido un error');
-})
+//   throw new Error('Ha ocurrido un error');
+// })
 
-.then(response => response.json())
-.then(response => console.dir(response) || response)
-.catch(console.error);
+// .then(response => response.json())
+// .then(response => console.dir(response) || response)
+// .catch(console.error);
 
 // --------Leer cabeceras---------
 
-fetch('https://httpbin.org/html')
+// fetch('https://httpbin.org/get')
 
-.then( response => {
-  if (response.ok){
-    return response;
-  }
+// .then( response => {
+//   if (response.ok){
+//     return response;
+//   }
 
-  throw new Error('Ha ocurrido un error');
-})
+//   throw new Error('Ha ocurrido un error');
+// })
 
-.then(response => {
-  for(var h of request.headers.entries()){
-    console.log(h[0],h[1]);
-  }
-  return response;
-})
+// .then(response => {
+//   for(var h of response.headers.entries()){
+//     console.log(h[0],h[1]);
+//   }
+//   return response;
+// })
 
-.then(response => console.dir(response) || response)
-.catch(console.error);
+// .then(response => console.dir(response.type) || response)
+// .catch(console.error);
 
 // Solamente aparece una cabecera!!!!
 // Si hacemos la petición con el navegador, vemos que hay más cabeceras
@@ -66,26 +69,26 @@ fetch('https://httpbin.org/html')
 
 
 // ---------Leer la respuesta de un POST--------
-var data = new FormData();
-data.append('var1', 'asdfasd');
-data.append('var2', 'asdfasdasdf');
+// var data = new FormData();
+// data.append('var1', 'asdfasd');
+// data.append('var2', 'asdfasdasdf');
 
-fetch('https://httpbin.org/html', {
-  method: "POST",
-  body: data
-})
+// fetch('https://httpbin.org/post', {
+//   method: "POST",
+//   body: data
+// })
 
-.then( response => {
-  if (response.ok){
-    return response;
-  }
+// .then( response => {
+//   if (response.ok){
+//     return response;
+//   }
 
-  throw new Error('Ha ocurrido un error');
-})
+//   throw new Error('Ha ocurrido un error');
+// })
 
-.then(response => response.json())
-.then(response => console.log(response) || response)
-.catch(console.error);
+// .then(response => response.json())
+// .then(response => console.log(response) || response)
+// .catch(console.error);
 
 // ---------Clonar la respuesta --------
 
@@ -93,7 +96,7 @@ var data = new FormData();
 data.append('var1', 'asdfasd');
 data.append('var2', 'asdfasdasdf');
 
-var promesa = fetch('https://httpbin.org/html', {
+var promesa = fetch('https://httpbin.org/post', {
   method: "POST",
   body: data
 })
@@ -109,10 +112,10 @@ var promesa = fetch('https://httpbin.org/html', {
 promesa
 .then(response => response.clone())
 .then(response => response.json())
-.then(response => console.log(response.form) || response);
+.then(response => console.log(response) || response);
 
 promesa
 .then(response => response.clone())
 .then(response => response.blob())
-.then(response => console.log(response.form) || response);
+.then(response => console.log(response) || response);
 
